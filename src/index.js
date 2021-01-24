@@ -3,4 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import TheDate from './state/TheDate'
+
+ReactDOM.render(
+<TheDate />
+, document.getElementById('root'));
+
+
