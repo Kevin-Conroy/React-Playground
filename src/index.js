@@ -6,7 +6,7 @@ import './index.css';
 import TheDate from './state/TheDate'
 
 ReactDOM.render(
-<TheDate />
+<App />
 , document.getElementById('root'));
 
 
