@@ -1,36 +1,43 @@
 import React, { Component } from 'react'
-
 class Tabs extends React.Component {
-  static defaultProps = { tabs: [] };
+  state = { 
+    tabs: [],
+    currentTab : null
+   };
+   componentDidMount = () => {
+     this.setState({
+       tabs : this.props.tabs
+     })
+   }
+   renderSection = () => {
+    if( this.state.currentTab !== null ){
+      return this.state.tabs[this.state.currentTab].content ;
+    }
+    else{
+      return "No tab selected yet!";
+    }
+   }
+   handleClick = ( event, index ) => {
+    this.setState({
+      currentTab: index
+    });
+   }
   render() {
     const buttons = this.props.tabs.map((tab, index) => (
-      <button key={index}>
+      <button key={index} onClick={(event) => this.handleClick( event, index )}>
         {tab.name}
       </button>
     ))
     return (
       <div>
-        {buttons}
-      </div>
-    )
-  }
-}
-/*
-class Tabs extends React.Component {
-  static defaultProps = { tabs: [] };
-  render() {
-   
-    const currentTab = this.props.tabs[0]
-    return (
-      <div>
-        {buttons}
-        <div className='content'>
-          {currentTab.content}
+        <div>
+          {buttons}
+        </div>
+        <div>
+          {this.renderSection()}
         </div>
       </div>
     )
   }
 }
-*/
-
 export default Tabs;
